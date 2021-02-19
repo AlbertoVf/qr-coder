@@ -17,8 +17,8 @@ import java.util.Date;
 
 public class QR {
     private final Color colorCode, colorBackground;
-    private int height, width;
     private final String textQr;
+    private int height, width;
     private String nameQr;
 
     //region Constructores
@@ -222,13 +222,13 @@ public class QR {
     @Override
     public String toString() {
         return "QR{" +
-                "height=" + height +
-                ", width=" + width +
-                ", colorCode=" + colorCode +
-                ", colorBackground=" + colorBackground +
-                ", textQr='" + textQr + '\'' +
-                ", nameQr='" + nameQr + '\'' +
-                '}';
+            "height=" + height +
+            ", width=" + width +
+            ", colorCode=" + colorCode +
+            ", colorBackground=" + colorBackground +
+            ", textQr='" + textQr + '\'' +
+            ", nameQr='" + nameQr + '\'' +
+            '}';
     }
     //endregion
 }

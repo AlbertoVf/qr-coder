@@ -1,4 +1,5 @@
 import Interfaz.Frame;
+import Interfaz.Mensajes;
 
 import javax.swing.*;
 
@@ -6,8 +7,9 @@ public class QRCoder {
 
     public static void main(String[] args) {
         String[] opciones = {"Codificar", "Decodificar", "Cancelar"};
-        int seleccion = JOptionPane.showOptionDialog(null, "Selecciona lo que deseas hacer", "QR Coder",
-                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, null);
+        int seleccion = JOptionPane.showOptionDialog(null,
+            Mensajes.MSG_PREG, Mensajes.TITLE, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
+            null, opciones, null);
 
         switch (seleccion) {
             case JOptionPane.YES_OPTION:

@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Decodificar extends JPanel {
+    private final Mensajes t = new Mensajes();
     private JButton decodificar;
     private JFileChooser fileChooser;
     private File fichero = null;// coger imagen
@@ -18,7 +19,7 @@ public class Decodificar extends JPanel {
 
     public Decodificar() {
         setFileChooser(new JFileChooser());
-        setDecodificar(new JButton("Decodificar"));
+        setDecodificar(new JButton(Mensajes.BTN_DECODIFICAR));
         add(decodificar);
         add(fileChooser);
     }
@@ -30,12 +31,13 @@ public class Decodificar extends JPanel {
      */
     public void setDecodificar(JButton decodificar) {
         File finalFichero = fichero;
+        decodificar.setFont(Mensajes.BOLD);
         decodificar.addActionListener(e -> {
             try {
                 mensaje = new QR().decoder(finalFichero);
-                new Mensajes().mensajeOptimo(mensaje);
+                t.mensajeOptimo(mensaje);
             } catch (FormatException | ChecksumException | NotFoundException | IOException ex) {
-                new Mensajes().mensajeError(ex);
+                t.mensajeError(ex);
             }
         });
         this.decodificar = decodificar;
@@ -48,11 +50,11 @@ public class Decodificar extends JPanel {
      * @param fileChooser selector de ficheros
      */
     public void setFileChooser(JFileChooser fileChooser) {
-        fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes", "bmp", "jpg", "jpeg", "png"));//obtener fichero
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes", "bmp", "jpg", "jpeg", "png"));
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            fichero = fileChooser.getSelectedFile();
+            fichero = fileChooser.getSelectedFile();//obtener fichero
         } else {
-            new Mensajes().mensajeWarning("Has cancelado la busqueda");
+            t.mensajeWarning(Mensajes.MSG_CANCELACION);
             System.exit(0);
         }
         this.fileChooser = fileChooser;

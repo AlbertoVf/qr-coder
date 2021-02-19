@@ -10,7 +10,7 @@ public class Frame extends JFrame {
 
     public Frame(String tipo) {
         if (tipo.equals("Codificar")) {
-            setBounds(x / 2, y / 2, x / 2 + 50, x / 2 + 130);
+            setBounds(x / 2, y / 2, x / 2, x / 2 + 100);
             add(new Codificar());
         } else if (tipo.equals("Decodificar")) {
             setBounds(x / 2, y / 2, x, y);
@@ -18,6 +18,7 @@ public class Frame extends JFrame {
         }
         setVisible(true);
         setResizable(false);
+        setTitle(Mensajes.TITLE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

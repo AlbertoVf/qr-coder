@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class Codificar extends JPanel {
+    private final Mensajes t = new Mensajes();
     private JTextField nameQr;
     private JTextArea textQr;
     private JComboBox<Integer> listHeight, listWidth;
@@ -33,14 +34,19 @@ public class Codificar extends JPanel {
      */
     public JPanel construirDimensiones() {
         JPanel jpDimension = new JPanel();
+        JLabel w, h;
 
         listHeight = setDimension();
         listWidth = setDimension();
 
-        jpDimension.add(new JLabel("Alto"));
+        h = new JLabel(Mensajes.LBL_ALTO);
+        h.setFont(Mensajes.BOLD);
+        jpDimension.add(h);
         jpDimension.add(listHeight);
 
-        jpDimension.add(new JLabel("Ancho"));
+        w = new JLabel(Mensajes.LBL_ANCHO);
+        w.setFont(Mensajes.BOLD);
+        jpDimension.add(w);
         jpDimension.add(listWidth);
 
         return jpDimension;
@@ -54,6 +60,7 @@ public class Codificar extends JPanel {
      */
     public JComboBox<Integer> setDimension() {
         JComboBox<Integer> jcb = new JComboBox<>();
+        jcb.setFont(Mensajes.BOLD);
         for (int x = 10; x <= 100; x += 5) {
             jcb.addItem(x);
         }
@@ -68,13 +75,13 @@ public class Codificar extends JPanel {
      */
     public JPanel construirTexto() {
         JPanel jpText = new JPanel(new BorderLayout());
-
-        nameQr = new JTextField("Nombre_codigo");
+        nameQr = new JTextField(Mensajes.NAME_TEXT);
         nameQr.setColumns(30);
-        jpText.add(nameQr, BorderLayout.NORTH);
-
-        textQr = new JTextArea("Texto del codigo Qr", 20, 25);
+        textQr = new JTextArea(Mensajes.QR_TEXT, 15, 25);
         textQr.setLineWrap(true);
+        nameQr.setFont(Mensajes.NORMAL);
+        textQr.setFont(Mensajes.NORMAL);
+        jpText.add(nameQr, BorderLayout.NORTH);
         jpText.add(new JToolBar.Separator());
         jpText.add(textQr, BorderLayout.SOUTH);
         return jpText;
@@ -86,7 +93,8 @@ public class Codificar extends JPanel {
      * @return boton que codifica el mensaje
      */
     public JButton construirBoton() {
-        JButton codificar = new JButton("Generar código QR");
+        JButton codificar = new JButton(Mensajes.BTN_CODIFICAR);
+        codificar.setFont(Mensajes.BOLD);
         codificar.addActionListener(new GenerateQR());
         return codificar;
     }
@@ -101,7 +109,7 @@ public class Codificar extends JPanel {
          * @return boolean true si esta vacio
          */
         private boolean isValid(JTextComponent f) {
-            return f.getText().equals("") || f.getText() == null;
+            return !f.getText().equals("") || f.getText() != null;
         }
 
         /**
@@ -114,23 +122,23 @@ public class Codificar extends JPanel {
         public void actionPerformed(ActionEvent e) {
             if (isValid(textQr)) {
                 QR q = new QR(
-                        (Integer) listHeight.getSelectedItem(),
-                        (Integer) listWidth.getSelectedItem(),
-                        textQr.getText()
+                    (Integer) listHeight.getSelectedItem(),
+                    (Integer) listWidth.getSelectedItem(),
+                    textQr.getText()
                 );
                 if (isValid(nameQr)) {
                     q.setNameQr(nameQr.getText());
-                    new Mensajes().mensajeOptimo("Codigo generado");
+                    t.mensajeOptimo(Mensajes.MSG_OPTIMO);
                 } else {
-                    new Mensajes().mensajeWarning("El nombre esta vacio. El nombre asigando se modificara al formato predeterminado");
+                    t.mensajeWarning(Mensajes.NAME_WARNING);
                 }
                 try {
                     q.generarImagen();
                 } catch (IOException | WriterException ex) {
-                    new Mensajes().mensajeError(ex);
+                    t.mensajeError(ex);
                 }
             } else {
-                new Mensajes().mensajeError("El texto esta vacio");
+                t.mensajeError(Mensajes.MSG_ERROR);
             }
         }
     }
