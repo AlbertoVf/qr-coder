@@ -3,8 +3,16 @@ import Interfaz.Mensajes;
 
 import javax.swing.*;
 
+/**
+ * Clase principal.
+ * Crea un JOption pane para seleccionar la accion
+ */
 public class QRCoder {
-
+    /**
+     * Metodo principal encargado de la ejecucion
+     *
+     * @param args parametros
+     */
     public static void main(String[] args) {
         String[] opciones = {"Codificar", "Decodificar", "Cancelar"};
         int seleccion = JOptionPane.showOptionDialog(null,

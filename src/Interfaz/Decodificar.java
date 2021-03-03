@@ -10,18 +10,35 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Clase para decodificar un código qr
+ */
 public class Decodificar extends JPanel {
+    /**
+     * Parametro para visualizar los mensajes de informacion
+     */
     private final Mensajes t = new Mensajes();
+    /**
+     * Boton para decodificar
+     */
     private JButton decodificar;
+    /**
+     * Selector de ficheros
+     */
     private JFileChooser fileChooser;
-    private File fichero = null;// coger imagen
-    private String mensaje = null;
-
+    /**
+     * Fichero que tendra el codigo qr
+     */
+    private File fichero = null;
+    /**
+     * Crea la interfaz para decodificar
+     */
     public Decodificar() {
         setFileChooser(new JFileChooser());
         setDecodificar(new JButton(Mensajes.BTN_DECODIFICAR));
         add(decodificar);
         add(fileChooser);
+
     }
 
     /**
@@ -34,8 +51,7 @@ public class Decodificar extends JPanel {
         decodificar.setFont(Mensajes.BOLD);
         decodificar.addActionListener(e -> {
             try {
-                mensaje = new QR().decoder(finalFichero);
-                t.mensajeOptimo(mensaje);
+                t.mensajeOptimo(new QR().decoder(finalFichero));
             } catch (FormatException | ChecksumException | NotFoundException | IOException ex) {
                 t.mensajeError(ex);
             }
@@ -50,9 +66,18 @@ public class Decodificar extends JPanel {
      * @param fileChooser selector de ficheros
      */
     public void setFileChooser(JFileChooser fileChooser) {
-        fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes", "bmp", "jpg", "jpeg", "png"));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagenes", "bmp", "jpg", "jpeg", "png");
+        fileChooser.setFileFilter(filter);
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            fichero = fileChooser.getSelectedFile();//obtener fichero
+            try {
+                if (filter.accept(fileChooser.getSelectedFile())){
+                   fichero = fileChooser.getSelectedFile();//obtener fichero
+               }else{
+                   t.mensajeError(Mensajes.MSG_CANCELACION);
+               }
+            } catch (Exception e) {
+                t.mensajeError(e);
+            }
         } else {
             t.mensajeWarning(Mensajes.MSG_CANCELACION);
             System.exit(0);

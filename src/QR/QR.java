@@ -15,6 +15,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
 
+/**
+ * Clase encargada de los códigos QR
+ */
 public class QR {
     private final Color colorCode, colorBackground;
     private final String textQr;

@@ -10,23 +10,35 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Tests de la clase QR
+ */
 public class QRTest {
     QR q = new QR();
 
-    @Test
-    public void setHeight() {
-        q.setHeight(40);
-        assertEquals(40, q.getHeight());
-    }
-
+    /**
+     * Test para la propiedad width
+     */
     @Test
     public void setWidth() {
         q.setWidth(40);
         assertEquals(40, q.getWidth());
     }
 
+    /**
+     * Test para la propiedad height
+     */
     @Test
-    public void setName_file() {
+    public void setHeight() {
+        q.setHeight(40);
+        assertEquals(40, q.getHeight());
+    }
+
+    /**
+     * Test para la propiedad nameQr.
+     */
+    @Test
+    public void setNameQr() {
         q.setNameQr("codigo-qr");
         assertEquals("codigo-qr", q.getNameQr());
 
@@ -34,6 +46,9 @@ public class QRTest {
         assertEquals("qr-code_____________", q.getNameQr());
     }
 
+    /**
+     * Test de la funcion generarImagen
+     */
     @Test
     public void generarImagen() {
         File f = new File("qr-prueba.png");
@@ -44,6 +59,9 @@ public class QRTest {
         }
     }
 
+    /**
+     * Test de la funcion generateQR
+     */
     @Test
     public void generateQR() {
         try {
@@ -53,6 +71,9 @@ public class QRTest {
         }
     }
 
+    /**
+     * Test de la funcion decoder
+     */
     @Test
     public void decoder() {
         String a = null;

@@ -10,10 +10,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * Interfaz gráfica para codificar un nuevo código qr.
+ */
 public class Codificar extends JPanel {
+    /**
+     * Variable para visualizar los mensajes de informacion
+     */
     private final Mensajes t = new Mensajes();
+    /**
+     * Campo de texto para escribir el nombre del
+     * fichero del nuevo codigo qr
+     */
     private JTextField nameQr;
+    /**
+     * Area de texto para escribir el texto que
+     * se codificara en el codigo qr
+     */
     private JTextArea textQr;
+    /**
+     * Lista desplegable para seleccionar el
+     * ancho y alto del codigo resultante.
+     */
     private JComboBox<Integer> listHeight, listWidth;
 
     /**
@@ -64,6 +82,7 @@ public class Codificar extends JPanel {
         for (int x = 10; x <= 100; x += 5) {
             jcb.addItem(x);
         }
+        jcb.setSelectedItem(50);
         return jcb;
     }
 
@@ -116,7 +135,7 @@ public class Codificar extends JPanel {
          * Evento de creacion de codigo QR a partir de los datos obtenidos de la interfaz
          * Tras acabar cada accion se visualiza una ventana con informacion sobre el proceso.
          *
-         * @param e
+         * @param e evento
          */
         @Override
         public void actionPerformed(ActionEvent e) {
