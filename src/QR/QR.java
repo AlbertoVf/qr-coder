@@ -32,7 +32,7 @@ public class QR {
     public QR() {
         this.height = 50;
         this.width = 50;
-        this.colorCode = Color.BLACK;
+         this.colorCode = Color.BLACK;
         this.colorBackground = Color.WHITE;
         this.textQr = "Texto de prueba";
         this.nameQr = "qr-prueba";
@@ -78,9 +78,9 @@ public class QR {
      * Obtiene el alto del codigo
      *
      * @return alto del codigo
-     */
+     * /
     public int getHeight() {
-        return height;
+         return height;
     }
 
     /**
@@ -127,9 +127,8 @@ public class QR {
      *
      * @return String con el nombre del archivo
      */
-    public String getNameQr() {
-        return nameQr;
-    }
+    p
+
 
     /**
      * Establece el nombre del archivo con el que se guardara el codigo QR.QR
@@ -146,15 +145,16 @@ public class QR {
     }
     //endregion
 
+
     //region Codigo QR
 
     /**
      * Crea un archivo de imagen que contiene el codigo QR.QR
      *
      * @return Fichero generado
-     * @throws IOException     Excepcion del fichero
+     *  @throws IOException     Excepcion del fichero
      * @throws WriterException Excepcion al escribir
-     */
+     * /
     public File generarImagen() throws IOException, WriterException {
         File f = new File(getNameQr() + ".png");
 
@@ -233,5 +233,4 @@ public class QR {
             ", nameQr='" + nameQr + '\'' +
             '}';
     }
-    //endregion
-}
+                ion

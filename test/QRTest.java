@@ -67,7 +67,8 @@ public class QRTest {
     @Test
     public void generateQR() {
         try {
-            assertEquals(new File("qr-prueba.png"), q.generateQR(new File("qr-prueba.png"), "Texto del codigo QR", 50, 50));
+            assertEquals(new File("qr-prueba.png"),
+                    q.generateQR(new File("qr-prueba.png"), "Texto del codigo QR", 50, 50));
         } catch (WriterException | IOException e) {
             e.printStackTrace();
         }

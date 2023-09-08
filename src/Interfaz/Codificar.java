@@ -50,7 +50,7 @@ public class Codificar extends JPanel {
      *
      * @return JPanel con dos listas desplegables y su texto correspondiente
      */
-    public JPanel construirDimensiones() {
+    pu blic JPanel construirDimensiones() {
         JPanel jpDimension = new JPanel();
         JLabel w, h;
 
@@ -80,6 +80,7 @@ public class Codificar extends JPanel {
         JComboBox<Integer> jcb = new JComboBox<>();
         jcb.setFont(Mensajes.BOLD);
         for (int x = 10; x <= 100; x += 5) {
+     *
             jcb.addItem(x);
         }
         jcb.setSelectedItem(50);
@@ -98,7 +99,7 @@ public class Codificar extends JPanel {
         nameQr.setColumns(30);
         textQr = new JTextArea(Mensajes.QR_TEXT, 15, 25);
         textQr.setLineWrap(true);
-        nameQr.setFont(Mensajes.NORMAL);
+        nameQr.setFon Mensajes.NORMAL);
         textQr.setFont(Mensajes.NORMAL);
         jpText.add(nameQr, BorderLayout.NORTH);
         jpText.add(new JToolBar.Separator());
@@ -125,7 +126,7 @@ public class Codificar extends JPanel {
          * No puede ser nullo ni una cadena vacia
          *
          * @param f Campo de texto
-         * @return boolean true si esta vacio
+          * @return boolean true si esta vacio
          */
         private boolean isValid(JTextComponent f) {
             return !f.getText().equals("") || f.getText() != null;
@@ -141,7 +142,9 @@ public class Codificar extends JPanel {
         public void actionPerformed(ActionEvent e) {
             if (isValid(textQr)) {
                 QR q = new QR(
+         *
                     (Integer) listHeight.getSelectedItem(),
+         *
                     (Integer) listWidth.getSelectedItem(),
                     textQr.getText()
                 );
@@ -149,10 +152,9 @@ public class Codificar extends JPanel {
                     q.setNameQr(nameQr.getText());
                     t.mensajeOptimo(Mensajes.MSG_OPTIMO);
                 } else {
-                    t.mensajeWarning(Mensajes.NAME_WARNING);
-                }
-                try {
-                    q.generarImagen();
+                        t.mensajeWarning(Mensajes.NAME_WARNING)
+
+                        {    q.generarImagen();
                 } catch (IOException | WriterException ex) {
                     t.mensajeError(ex);
                 }

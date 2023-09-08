@@ -75,7 +75,8 @@ public class Mensajes {
     }
 
     /**
-     * Muestra una ventana emergente con un mensaje indicando que se realizo correctamente
+     * Muestra una ventana emergente con un mensaje indicando que se realizo
+     * correctamente
      *
      * @param mensaje el mensaje
      */

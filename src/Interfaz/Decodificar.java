@@ -30,6 +30,7 @@ public class Decodificar extends JPanel {
      * Fichero que tendra el codigo qr
      */
     private File fichero = null;
+
     /**
      * Crea la interfaz para decodificar
      */
@@ -60,7 +61,8 @@ public class Decodificar extends JPanel {
     }
 
     /**
-     * Establece un buscador de ficheros con limitaciones a solo archivos de imagen y establece el fichero de trabajo
+     * Establece un buscador de ficheros con limitaciones a solo archivos de imagen
+     * y establece el fichero de trabajo
      * o un mensaje de advertencia
      *
      * @param fileChooser selector de ficheros
@@ -70,11 +72,11 @@ public class Decodificar extends JPanel {
         fileChooser.setFileFilter(filter);
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             try {
-                if (filter.accept(fileChooser.getSelectedFile())){
-                   fichero = fileChooser.getSelectedFile();//obtener fichero
-               }else{
-                   t.mensajeError(Mensajes.MSG_CANCELACION);
-               }
+                if (filter.accept(fileChooser.getSelectedFile())) {
+                    fichero = fileChooser.getSelectedFile();// obtener fichero
+                } else {
+                    t.mensajeError(Mensajes.MSG_CANCELACION);
+                }
             } catch (Exception e) {
                 t.mensajeError(e);
             }
