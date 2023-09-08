@@ -1,3 +1,5 @@
+package test;
+
 import QR.QR;
 import com.google.zxing.ChecksumException;
 import com.google.zxing.FormatException;
